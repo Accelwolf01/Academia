@@ -1,0 +1,66 @@
+CREATE DATABASE IF NOT EXISTS Academiabd;
+USE Academiabd;
+
+CREATE TABLE Modulo (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Clase (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    ModuloId INT NOT NULL,
+    FOREIGN KEY (ModuloId) REFERENCES Modulo(Id)
+);
+
+CREATE TABLE Estudiante (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    Nombre VARCHAR(100) NOT NULL,
+    Edad INT NOT NULL,
+    DocumentoIdentidad VARCHAR(50) NOT NULL,
+    TipoLicencia VARCHAR(10) NOT NULL
+);
+
+CREATE TABLE Inscripcion (
+    Id INT AUTO_INCREMENT PRIMARY KEY,
+    EstudianteId INT NOT NULL,
+    ClaseId INT NOT NULL,
+    Activa BOOLEAN NOT NULL,
+    FOREIGN KEY (EstudianteId) REFERENCES Estudiante(Id),
+    FOREIGN KEY (ClaseId) REFERENCES Clase(Id)
+);
+
+-- Insertar módulos
+INSERT INTO Modulo (Nombre) VALUES ('Adaptación'), ('Ética'), ('Marco Legal');
+
+-- Insertar clases
+INSERT INTO Clase (Nombre, ModuloId) VALUES 
+('Adaptación 1', 1), ('Adaptación 2', 1),
+('Ética 1', 2), ('Ética 2', 2),
+('Marco Legal 1', 3), ('Marco Legal 2', 3);
+
+-- Insertar estudiantes
+INSERT INTO Estudiante (Nombre, Edad, DocumentoIdentidad, TipoLicencia) VALUES
+('Juan Pérez', 22, '12345678', 'A1'),
+('Ana Gómez', 25, '87654321', 'B1'),
+('Luis Torres', 30, '11223344', 'C1'),
+('María López', 19, '44332211', 'A2'),
+('Carlos Ruiz', 28, '55667788', 'B2'),
+('Laura Sánchez', 21, '99887766', 'C2'),
+('Pedro Ramírez', 24, '66778899', 'A1'),
+('Sofía Castro', 27, '77889900', 'B1'),
+('Miguel Díaz', 23, '88990011', 'C1'),
+('Lucía Fernández', 26, '99001122', 'A2');
+
+-- Insertar inscripciones (ejemplo)
+INSERT INTO Inscripcion (EstudianteId, ClaseId, Activa) VALUES
+(1, 1, TRUE),
+(2, 2, TRUE),
+(3, 3, TRUE),
+(4, 4, TRUE),
+(5, 5, TRUE),
+(6, 6, TRUE),
+(7, 1, TRUE),
+(8, 2, TRUE),
+(9, 3, TRUE),
+(10, 4, TRUE);

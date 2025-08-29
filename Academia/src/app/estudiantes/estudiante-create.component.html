@@ -1,0 +1,18 @@
+<h2>Crear Estudiante</h2>
+<form (ngSubmit)="crearEstudiante()">
+  <label>Nombre:</label>
+  <input [(ngModel)]="estudiante.nombre" name="nombre" required><br>
+
+  <label>Edad:</label>
+  <input type="number" [(ngModel)]="estudiante.edad" name="edad" required><br>
+
+  <label>Documento:</label>
+  <input [(ngModel)]="estudiante.documento" name="documento" required><br>
+
+  <label>Tipo Licencia:</label>
+  <select [(ngModel)]="estudiante.tipoLicencia" name="tipoLicencia">
+    <option *ngFor="let t of ['A1','A2','B1','B2','C1','C2']" [value]="t">{{t}}</option>
+  </select><br>
+
+  <button type="submit">Guardar</button>
+</form>

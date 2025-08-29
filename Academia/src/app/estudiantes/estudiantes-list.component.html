@@ -1,0 +1,15 @@
+<h2>Lista de Estudiantes</h2>
+<table border="1" cellpadding="8">
+  <tr>
+    <th>Nombre</th>
+    <th>Edad</th>
+    <th>Documento</th>
+    <th>Licencia</th>
+  </tr>
+  <tr *ngFor="let e of estudiantes">
+    <td>{{ e.nombre }}</td>
+    <td>{{ e.edad }}</td>
+    <td>{{ e.documento }}</td>
+    <td>{{ e.tipoLicencia }}</td>
+  </tr>
+</table>
